@@ -126,4 +126,126 @@ def game_hash
   }
 end
 
+require 'pry'
+
 # Write code here
+def num_points_scored (name)
+  game_hash
+  counter = 0
+  while counter < 5 do
+    if game_hash[:home][:players][counter][:player_name] == name
+      points_scored = game_hash[:home][:players][counter][:points]
+    end
+    if game_hash[:away][:players][counter][:player_name] == name
+      points_scored = game_hash[:away][:players][counter][:points]
+    end
+    counter += 1
+  end
+  points_scored
+end
+
+def shoe_size (name)
+  game_hash
+  counter = 0
+  while counter < 5 do
+    if game_hash[:home][:players][counter][:player_name] == name
+      shoe_size = game_hash[:home][:players][counter][:shoe]
+    end
+    if game_hash[:away][:players][counter][:player_name] == name
+      shoe_size = game_hash[:away][:players][counter][:shoe]
+    end
+    counter += 1
+  end
+  shoe_size
+end
+
+def team_colors (team_name)
+  game_hash
+  counter = 0
+  while counter < 5 do
+    if game_hash[:home][:team_name] == team_name
+      team_colors = game_hash[:home][:colors]
+    end
+    if game_hash[:away][:team_name] == team_name
+      team_colors = game_hash[:away][:colors]
+    end
+    counter += 1
+  end
+  team_colors
+end
+
+def team_names
+  game_hash
+  team_names = [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+  team_names
+end
+
+def player_numbers (team_name)
+  game_hash
+  counter = 0
+  player_numbers = []
+  while counter < 5 do
+    if game_hash[:home][:team_name] == team_name
+      player_numbers << game_hash[:home][:players][counter][:number]
+    end
+    if game_hash[:away][:team_name] == team_name
+      player_numbers << game_hash[:away][:players][counter][:number]
+    end
+    counter += 1
+  end
+  player_numbers
+end
+
+def player_stats (name)
+  game_hash
+  counter = 0
+  players_stats = {}
+  while counter < 5 do
+    if game_hash[:home][:players][counter][:player_name] == name
+      players_stats = game_hash[:home][:players][counter]
+    end
+    if game_hash[:away][:players][counter][:player_name] == name
+      players_stats = game_hash[:away][:players][counter]
+    end
+    counter += 1
+  end
+  players_stats
+end
+
+def big_shoe_rebounds
+  game_hash
+  largest_shoe = 0
+  final_counter = nil
+  counter = 0
+  while counter < 5 do
+    if game_hash[:home][:players][counter][:shoe] > largest_shoe
+      largest_shoe = game_hash[:home][:players][counter][:shoe]
+      final_counter = counter
+      final_team = :home
+    end
+    if game_hash[:away][:players][counter][:shoe] > largest_shoe
+      largest_shoe = game_hash[:away][:players][counter][:shoe]
+      final_counter = counter
+      final_team = :away
+    end
+    counter += 1
+  end
+  p final_team
+  p final_counter
+  game_hash[final_team][:players][final_counter][:rebounds]
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
