@@ -154,27 +154,23 @@ def shoe_size(player_name)
  end
 end 
 
-  
-def team_colors(team_name)
-  game_hash.each do |location, hash_info|
-    hash_info[:colors].collect do |team_color| 
-      team_color[:colors] == team_name
-      #if team_color == game_hash(team_name)
-        return hash_info[:colors]
-   binding.pry
-   #end
-  end 
- end
-end
-      
-    
- 
 
-# def team_names(game)
-#   game.collect do |team, team_hash|
-#     team_hash[:name]
-#   end
-# end
+def team_colors(team_name)
+  if team_name == "Charlotte Hornets" 
+    return game_hash[:away][:colors]
+  else return game_hash[:home][:colors]
+  end
+end
+
+
+def team_names(team)
+  game_hash.each do |location, team_info|
+  if team_info[:away]== "Charlotte Hornets" 
+    return game_hash[:away]
+  else return game_hash[:home]
+  end
+end
+end
 
 
 
