@@ -1,5 +1,6 @@
-require './hashketball.rb'
 require 'pry'
+require './hashketball.rb'
+
 
 
 def game_hash
@@ -152,15 +153,29 @@ def shoe_size(player_name)
    end
  end
 end 
+
   
 def team_colors(team_name)
-  game_hash.map do |location, hash_info|
-    if hash_info[:colors] == team_name
-  end
+  game_hash.each do |location, hash_info|
+    hash_info[:colors].collect do |team_color| 
+      team_color[:colors] == team_name
+      #if team_color == game_hash(team_name)
+        return hash_info[:colors]
+   binding.pry
+   #end
+  end 
+ end
 end
+      
+    
+ 
 
-def team_names
-end
+# def team_names(game)
+#   game.collect do |team, team_hash|
+#     team_hash[:name]
+#   end
+# end
+
 
 
 # def player_numbers(team)
