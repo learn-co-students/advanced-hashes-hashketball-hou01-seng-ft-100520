@@ -163,13 +163,10 @@ def team_colors(team_name)
 end
 
 
-def team_names(team)
-  game_hash.each do |location, team_info|
-  if team_info[:away]== "Charlotte Hornets" 
-    return game_hash[:away]
-  else return game_hash[:home]
-  end
-end
+def team_names
+  game_hash.map do |location, team_info|
+    team_info[:team_name]
+ end
 end
 
 
