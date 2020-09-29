@@ -1,7 +1,7 @@
 require './hashketball.rb'
 require 'pry'
 
-#Write your code below game_hash
+
 def game_hash
   {
     home: {
@@ -129,27 +129,32 @@ def game_hash
   }
 end
 
-#def players_combined
-#  game_hash[:home][:players].merge(game_hash[:away][:players])
-#end
 
 
 def num_points_scored(player_name)
    game_hash.each do |location, hash_info|
-   hash_info[:players].each do |player_stats|
-   if player_stats[:player_name] == player_name
-     return player_stats[:points]
-   end
+   hash_info[:players].each do |player_info|
+   if player_info[:player_name] == player_name
+     return player_info[:points]
+
+   
    end
   end 
+end
+end
+
+
+
+def shoe_size(player_name)
+   game_hash.each do |location, hash_info|
+   hash_info[:players].each do |player_stats|
+   if player_stats[:player_name] == player_name
+     return player_stats[:shoe]
+    end
+   end
+ end
+end 
   
-end
-
-
-
-def shoe_size
-end
-
 def team_colors
 end
 
@@ -157,21 +162,21 @@ def team_names
 end
 
 
-def player_numbers(team)
- local = game_hash
-  number_array = []
-  if local_hash[:home][:team_name] == team
-    local_hash[:home][:players].each do
-      number_array << local_hash[:home][:players][:number]
-    end
-  end
-  if local_hash[:away][:team_name] == team
-    local_hash[:away][:players].each do
-      number_array << local_hash[:away][:players][:number]
-    end
-  end
-  return number_array
-end
+# def player_numbers(team)
+# local = game_hash
+#   number_array = []
+#   if local_hash[:home][:team_name] == team
+#     local_hash[:home][:players].each do
+#       number_array << local_hash[:home][:players][:number]
+#     end
+#   end
+#   if local_hash[:away][:team_name] == team
+#     local_hash[:away][:players].each do
+#       number_array << local_hash[:away][:players][:number]
+#     end
+#   end
+#   return number_array
+# end
 
 
 def player_stats(player)
