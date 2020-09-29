@@ -129,4 +129,41 @@ def game_hash
   }
 end
 
-# Write code here
+#def players_combined
+#  game_hash[:home][:players].merge(game_hash[:away][:players])
+#end
+
+
+def num_points_scored(player_name)
+   game_hash[:player_name][:points]
+  
+end
+
+
+
+def shoe_size
+end
+
+def team_colors
+end
+
+def team_names
+end
+
+def player_numbers
+end
+
+def player_stats(player)
+  game_hash.each do |location, hash_info|
+    hash_info[:players].each do |player_hash|
+      if player_hash[:player_name] == player
+       return player_hash
+      end
+    end 
+  end 
+end
+
+def big_shoe_rebounds
+end
+
+
