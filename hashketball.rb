@@ -135,7 +135,13 @@ end
 
 
 def num_points_scored(player_name)
-   game_hash[:player_name][:points]
+   game_hash.each do |location, hash_info|
+   hash_info[:players].each do |player_stats|
+   if player_stats[:player_name] == player_name
+     return player_stats[:points]
+   end
+   end
+  end 
   
 end
 
@@ -150,8 +156,23 @@ end
 def team_names
 end
 
-def player_numbers
+
+def player_numbers(team)
+ local = game_hash
+  number_array = []
+  if local_hash[:home][:team_name] == team
+    local_hash[:home][:players].each do
+      number_array << local_hash[:home][:players][:number]
+    end
+  end
+  if local_hash[:away][:team_name] == team
+    local_hash[:away][:players].each do
+      number_array << local_hash[:away][:players][:number]
+    end
+  end
+  return number_array
 end
+
 
 def player_stats(player)
   game_hash.each do |location, hash_info|
@@ -163,7 +184,25 @@ def player_stats(player)
   end 
 end
 
-def big_shoe_rebounds
-end
+# def big_shoe_rebounds
+# #  def big_shoe_rebounds
+# #  largest_shoe = 0 
+# #  game_hash.each do |location, hash_info|
+# #    hash_info[:players].each do |player_hash|
+# #      if player_hash[:shoe] >> largest_shoe
+# #        largest_shoe = player_hash[:shoe]
+# #      end
+# #      binding.pry
+
+ 
+#   game_hash.each do |location, hash_info|
+#     hash_info[:players].each do |player_hash|
+#       if player_hash[:shoe] == largest_shoe
+#         return player_hash[:rebounds]
+#       end
+#     end
+#   end
+# end
+# end
 
 
