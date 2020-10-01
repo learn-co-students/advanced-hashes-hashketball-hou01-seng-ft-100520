@@ -1,4 +1,5 @@
 require "pry"  
+#[game_hash[:home][:team_name], game_hash[:away][:team_name]]
 def game_hash
   {
     home: {
@@ -154,18 +155,43 @@ end
 
 def team_names
   [game_hash[:home][:team_name], game_hash[:away][:team_name]]
-  binding.pry
 end
 
-def player_numbers team_name
-  team_name[:players].map{|key, value|value[:number]}
+
+def player_numbers(team_name)
+  numbers_array = []
+  game_hash.each do |key, value|
+    if team_name == value[:team_name]
+      numbers_array = value[:players].map do |player|
+        player[:number]
+      end
+    end
+  end
+  return numbers_array
 end
     
 def player_stats player_name
-  players = game_hash[:home][:players].concat(game_hash[:away][:players])
-  [:players]
-end
+    players = game_hash[:home][:players].concat(game_hash[:away][:players])
+    players.each do |player|
+      if player[:player_name] == player_name
+        return player 
+      end   
+    end
+  end
 
+def big_shoe_rebounds
+  big_shoe = 0
+  rebounds = 0
+  game_hash.each do |team, team_info|
+    team_info[:players].each do |player|
+      if player[:shoe] > big_shoe
+        big_shoe = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  return rebounds
+end
 
 
 
