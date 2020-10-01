@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe 'hashketball' do
   let(:alan_anderson) {
@@ -132,7 +133,7 @@ describe 'hashketball' do
 
     it 'knows the Brooklyn Nets colors are Black and White' do
       expect(team_colors("Brooklyn Nets")).to contain_exactly("Black", "White")
-      
+
     end
 
     it 'knows the Charlotte Hornets colors are Turquoise and Purple' do
