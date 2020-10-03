@@ -1,3 +1,5 @@
+require 'pry'
+
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +129,96 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player_name)
+  game_hash.each do |team_location, values|
+    players = values[:players]
+    players.each do |key, value|
+      if key[:player_name] == player_name
+        return key[:points]
+      end
+    end
+  end
+end
+
+#Build a method, `shoe_size`, that takes in an argument of a player's name and returns the shoe size for that player.
+
+def shoe_size(player_name)
+    game_hash.each do |team_location, values|
+    players = values[:players]
+    players.each do |key, value|
+      if key[:player_name] == player_name
+        return key[:shoe]
+      end
+    end
+  end
+end
+
+#Build a method, `team_colors`, that takes in an argument of the team name and returns an `Array` of that team's colors.
+
+def team_colors(team_name)
+  game_hash.each do |team_location, values|
+    if values[:team_name] == team_name
+      return values[:colors]
+    end
+  end
+end
+
+#Build a method, `team_names`, that operates on the game `Hash` to return an `Array` of the team names.
+
+def team_names
+  team = []
+  game_hash.each do |team_location, values|
+    team << values[:team_name]
+  end
+  team
+end
+
+# Build a method, `player_numbers`, that takes in an argument of a team name and returns an `Array` of the jersey numbers for that team
+
+def player_numbers(team_name)
+  jersey_numbers = []
+  game_hash.each do |team_location, values|
+    if values[:team_name] == team_name
+      values[:players].each do  |key, value|
+      jersey_numbers << key[:number]
+      end
+    end
+  end
+  jersey_numbers
+end
+
+# Build a method, `player_stats`, that takes in an argument of a player's name and returns a hash of that player's stats.
+
+def player_stats(player_name)
+players_stats = Hash.new
+  game_hash.each do |team_location, values|
+    players = values[:players]
+    players.each do |key, value|
+      if key[:player_name] == player_name
+        stats = key
+        stats.each do |stat_key, stat_value|
+          players_stats[stat_key] = stat_value
+        end
+      end
+    end
+  end
+  players_stats
+end
+# Build a method, `big_shoe_rebounds`, that will return the number of rebounds associated with the player that has the largest shoe size. Break this one down into steps:
+
+  # First, find the player with the largest shoe size
+  # Then, return that player's number of rebounds
+  # Remember to think about return values here.
+  
+def big_shoe_rebounds
+  game_hash.each do |team_location, values|
+    players = values[:players]
+    big_foot = players.max_by{|k| k[:shoe]}[:player_name]
+    players.each do |key, value|
+      if key[:player_name] == big_foot
+        return key[:rebounds]
+      end
+    end
+  end
+end
