@@ -131,8 +131,8 @@ end
 # Write code here
 def find_player(player_name)
   # method to access hash of stats of player name passed as arg
-  player = game_hash[:away][:players].find {|hash| hash[:player_name] == player_name} ||
-            game_hash[:home][:players].find {|hash| hash[:player_name] == player_name}
+  game_hash[:away][:players].find {|hash| hash[:player_name] == player_name} ||
+    game_hash[:home][:players].find {|hash| hash[:player_name] == player_name}
 end
 
 def num_points_scored(player)
