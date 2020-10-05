@@ -129,16 +129,21 @@ def game_hash
 end
 
 # Write code here
+def find_player(player_name)
+  # method to access hash of stats of player name passed as arg
+  player = game_hash[:away][:players].find {|hash| hash[:player_name] == player_name} ||
+            game_hash[:home][:players].find {|hash| hash[:player_name] == player_name}
+end
 
 def num_points_scored(player)
-  player_stats = game_hash[:away][:players].find {|hash| hash[:player_name] == player} || 
-                  game_hash[:home][:players].find {|hash| hash[:player_name] == player}
+  # find player using #find_player
+  player_stats = find_player(player)
   return player_stats[:points]
 end
 
 def shoe_size(player)
-  player_stats = game_hash[:away][:players].find {|hash| hash[:player_name] == player} || 
-                  game_hash[:home][:players].find {|hash| hash[:player_name] == player}
+  # find player using #find_player
+  player_stats = find_player(player)
   return player_stats[:shoe]
 end
         
@@ -165,7 +170,7 @@ def player_numbers(team_name)
 end
 
 def player_stats(player_name)
-  player = game_hash[:away][:players].find {|hash| hash[:player_name] == player_name} || game_hash[:home][:players].find {|hash| hash[:player_name] == player_name}
+  player = find_player(player_name)
 end
 
 def big_shoe_rebounds
